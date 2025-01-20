@@ -14,14 +14,14 @@ const fetchData = async () => {
       throw new Error("Выбранный номер должен быть в диапазоне от 1 до 10");
     }
     const response = await fetch(
-      `https://swapi.py4e.com/api/${chosenOption.value}/${chosenNumber.value}/`
+      `https://swapi.dev/api/${chosenOption.value}/${chosenNumber.value}/`
     );
-    const data = await response.json();
     if (!response.ok) {
       throw new Error(
         `Произошла ошибка сервера(таких данных нет): ${response.status}`
       );
     }
+    const data = await response.json();
     switch (chosenOption.value) {
       case "people":
         results.innerHTML = `Name: ${data.name}, Weight: ${data.mass}, Gender: ${data.gender}`;
@@ -33,7 +33,7 @@ const fetchData = async () => {
         results.innerHTML = `Name: ${data.name}, Model: ${data.model}, Length: ${data.length}`;
         break;
       case "vehicles":
-        results.innerHTML = `Model: ${data.model}, Passengers: ${data.passengers}, Pilots: ${data.pilots}`;
+        results.innerHTML = `Model: ${data.model}, Passengers: ${data.passengers}`;
         break;
       case "species":
         results.innerHTML = `Name: ${data.name}, Language: ${data.language}, Designation: ${data.designation}`;
